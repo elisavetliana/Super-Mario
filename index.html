@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Super-Mario</title>
+<title>Super-Mario2</title>
 <meta charset="utf-8">
 <style>
 body {
@@ -47,12 +47,25 @@ body {
 		var coinSound;
 		var stompSound;
 		
-		
+		//Score
+		var scoretext;
+		var scorec;
 		
 		function create() {
 			//Music playback
 			music = game.add.audio('sound');
 			music.play('',0,1,true);
+			
+			//Score
+			scoretext = game.add.text(20, 10, '0',{
+				font: "25px arial",
+				fill: "#ffffff",
+				aligment: "center"
+			});
+			scoretext.fixedToCamera = true;
+			scoretext.stroke = '#000000';
+			scoretext.strokeThickness = 1;
+			scorec = 0;
 			
 			Phaser.Canvas.setImageRenderingCrisp(game.canvas)
 			game.scale.pageAlignHorizontally = true;
@@ -102,6 +115,10 @@ body {
 		}
 
 		function update() {
+			//Score update
+			scoretext.text = "SCORE : " + scorec;
+			game.world.bringToTop(scoretext);
+			
 			game.physics.arcade.collide(player, layer);
 			game.physics.arcade.collide(goombas, layer);
 			game.physics.arcade.overlap(player, goombas, goombaOverlap);
@@ -148,6 +165,9 @@ body {
 			coinSound = game.add.audio('coin');
 			coinSound.play();
 			
+			//Score
+			scorec += 70;
+			
 			coin.kill();
 		}
 
@@ -156,6 +176,9 @@ body {
 				//stomp sound
 				stompSound = game.add.audio('stomp');
 				stompSound.play();
+				
+				//Score
+				scorec += 270;
 				
 				goomba.animations.stop();
 				goomba.frame = 2;
