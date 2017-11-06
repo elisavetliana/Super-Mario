@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Super-Mario</title>
+<title>Super-Mario2</title>
 <meta charset="utf-8">
 <style>
 body {
@@ -230,7 +230,7 @@ body {
 				game.time.events.add(Phaser.Timer.SECOND * 3, function() {
 					if(livesc > 0){
 						this.game.state.restart();
-					}else(lvesc == 0){
+					}else(livesc == 0){
 						GameOver.text = ("Game Over!");
 						game.world.bringToTop(GameOver);
 						game.pause = true;
