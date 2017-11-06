@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Super-Mario2</title>
+<title>Super-Mario</title>
 <meta charset="utf-8">
 <style>
 body {
@@ -56,6 +56,9 @@ body {
 		var livestext;
 		var livesc;
 		
+		//Game Over
+		var GameOver;
+		
 		function create() {
 			//Music playback
 			music = game.add.audio('sound');
@@ -82,6 +85,16 @@ body {
 			livestext.stroke = '#000000';
 			livestext.strokeThickness = 1;
 			livesc = parseInt(localStorage.getItem("lives"));
+			
+			//Game Over
+			GameOver = game.add.text(150, 150, ' ',{
+				font: "20px arial",
+				fill: "#ffffff",
+				aligment: "center"
+			});
+			GameOver.fixedToCamera = true;
+			GameOver.stroke = '#000000';
+			GameOver.strokeThickness = 1;
 			
 			Phaser.Canvas.setImageRenderingCrisp(game.canvas)
 			game.scale.pageAlignHorizontally = true;
@@ -215,7 +228,13 @@ body {
 				player.body.enable = false;
 				player.animations.stop();
 				game.time.events.add(Phaser.Timer.SECOND * 3, function() {
-					this.game.state.restart();
+					if(livesc > 0){
+						this.game.state.restart();
+					}else if(lvesc == 0){
+						GameOver.text = "Game Over!";
+						game.world.bringToTop(GameOver);
+						game.paused = true;
+					}
 				});
 			}
 		}
