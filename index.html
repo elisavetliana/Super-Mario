@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Super-Mario</title>
+<title>Super-Mario2</title>
 <meta charset="utf-8">
 <style>
 body {
@@ -76,7 +76,7 @@ body {
 			scorec = 0;
 			
 			//Lives
-			livestext = game.add.text(170, 10, '5',{
+			livestext = game.add.text(180, 10, '5',{
 				font: "15px arial",
 				fill: "#ffffff",
 				aligment: "center"
@@ -87,7 +87,7 @@ body {
 			livesc = parseInt(localStorage.getItem("lives"));
 			
 			//Game Over
-			GameOver = game.add.text(100, 100, 'Debug',{
+			GameOver = game.add.text(100, 100, '0',{
 				font: "20px arial",
 				fill: "#ffffff",
 				aligment: "center"
@@ -230,10 +230,10 @@ body {
 				game.time.events.add(Phaser.Timer.SECOND * 3, function() {
 					if(livesc > 0){
 						this.game.state.restart();
-					}else if(lvesc == 0){
-						GameOver.text = "Game Over!";
+					}else(lvesc == 0){
+						GameOver.text = ("Game Over!");
 						game.world.bringToTop(GameOver);
-						game.paused = true;
+						game.pauser = true;
 					}
 				});
 			}
