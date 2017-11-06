@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Super-Mario</title>
+<title>Super-Veta</title>
 <meta charset="utf-8">
 <style>
 body {
@@ -56,9 +56,6 @@ body {
 		var livestext;
 		var livesc;
 		
-		//Game Over
-		//var GameOver;
-		
 		function create() {
 			//Music playback
 			music = game.add.audio('sound');
@@ -86,15 +83,6 @@ body {
 			livestext.strokeThickness = 1;
 			livesc = parseInt(localStorage.getItem("lives"));
 			
-			//Game Over
-			//GameOver = game.add.text(100, 100, '0',{
-			//	font: "20px arial",
-			//	fill: "#ffffff",
-			//	aligment: "center"
-			//});
-			//GameOver.fixedToCamera = true;
-			//GameOver.stroke = '#000000';
-			//GameOver.strokeThickness = 2;
 			
 			Phaser.Canvas.setImageRenderingCrisp(game.canvas)
 			game.scale.pageAlignHorizontally = true;
