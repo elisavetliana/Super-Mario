@@ -30,6 +30,8 @@ body {
 			//Sounds
 			game.load.audio('sound', ['audio/bgm.mp3','audio/bgm.ogg']);
 			game.load.audio('jump', ['audio/jump.wav']);
+			game.load.audio('coin', ['audio/coin.wav']);
+			game.load.audio('stomp', ['audio/stomp.wav']);
 
 			this.load.spritesheet('tiles', 'assets/super_mario_tiles.png', 16,16);
 			this.load.spritesheet('goomba', 'assets/goomba.png', 16, 16);
@@ -39,9 +41,13 @@ body {
 			this.load.tilemap('level', 'assets/super_mario_map.json', null,
 					Phaser.Tilemap.TILED_JSON);
 		}
-
+		//Sound Variables
 		var music;
 		var jumpSound;
+		var coinSound;
+		var stompSound;
+		
+		
 		
 		function create() {
 			//Music playback
@@ -138,11 +144,19 @@ body {
 		}
 
 		function coinOverlap(player, coin) {
+			//coin sound
+			coinSound = game.add.audio('coin');
+			coinSound.play();
+			
 			coin.kill();
 		}
 
 		function goombaOverlap(player, goomba) {
 			if (player.body.touching.down) {
+				//stomp sound
+				stompSound = game.add.audio('stomp');
+				stompSound.play();
+				
 				goomba.animations.stop();
 				goomba.frame = 2;
 				goomba.body.enable = false;
