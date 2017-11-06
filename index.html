@@ -57,7 +57,7 @@ body {
 		var livesc;
 		
 		//Game Over
-		var GameOver;
+		//var GameOver;
 		
 		function create() {
 			//Music playback
@@ -87,14 +87,14 @@ body {
 			livesc = parseInt(localStorage.getItem("lives"));
 			
 			//Game Over
-			GameOver = game.add.text(100, 100, '0',{
-				font: "20px arial",
-				fill: "#ffffff",
-				aligment: "center"
-			});
-			GameOver.fixedToCamera = true;
-			GameOver.stroke = '#000000';
-			GameOver.strokeThickness = 2;
+			//GameOver = game.add.text(100, 100, '0',{
+			//	font: "20px arial",
+			//	fill: "#ffffff",
+			//	aligment: "center"
+			//});
+			//GameOver.fixedToCamera = true;
+			//GameOver.stroke = '#000000';
+			//GameOver.strokeThickness = 2;
 			
 			Phaser.Canvas.setImageRenderingCrisp(game.canvas)
 			game.scale.pageAlignHorizontally = true;
@@ -231,8 +231,8 @@ body {
 					if(livesc > 0){
 						this.game.state.restart();
 					}else(livesc == 0){
-						GameOver.text = ("Game Over!");
-						game.world.bringToTop(GameOver);
+						//GameOver.text = ("Game Over!");
+						//game.world.bringToTop(GameOver);
 						game.pause = true;
 					}
 				});
