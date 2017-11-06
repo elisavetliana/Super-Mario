@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Super-Mario</title>
+<title>Super-Mario2</title>
 <meta charset="utf-8">
 <style>
 body {
@@ -51,6 +51,11 @@ body {
 		var scoretext;
 		var scorec;
 		
+		//Lives
+		localStorage.setItem('Lives',5);
+		var livestext;
+		var livesc;
+		
 		function create() {
 			//Music playback
 			music = game.add.audio('sound');
@@ -66,6 +71,17 @@ body {
 			scoretext.stroke = '#000000';
 			scoretext.strokeThickness = 1;
 			scorec = 0;
+			
+			//Lives
+			livestext = game.add.text(200, 10, '5',{
+				font: "15px arial",
+				fill: "#ffffff",
+				aligment: "center"
+			});
+			livestext.fixedToCamera = true;
+			livestext.stroke = '#000000';
+			livestext.strokeThickness = 1;
+			livesc = parseInt(localStorage.getItem("lives"));
 			
 			Phaser.Canvas.setImageRenderingCrisp(game.canvas)
 			game.scale.pageAlignHorizontally = true;
@@ -118,6 +134,9 @@ body {
 			//Score update
 			scoretext.text = "SCORE : " + scorec;
 			game.world.bringToTop(scoretext);
+			
+			livestext.text = "LIVES : " + livesc;
+			game.world.bringToTop(livestext);
 			
 			game.physics.arcade.collide(player, layer);
 			game.physics.arcade.collide(goombas, layer);
@@ -188,11 +207,15 @@ body {
 					goomba.kill();
 				});
 			} else {
+				//Lives
+				livesc -= 1;
+				localStorage.setItem("lives", livesc);
+				
 				player.frame = 6;
 				player.body.enable = false;
 				player.animations.stop();
 				game.time.events.add(Phaser.Timer.SECOND * 3, function() {
-					game.paused = true;
+					this.game.state.restart();
 				});
 			}
 		}
