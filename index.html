@@ -30,6 +30,8 @@ body {
 			game.load.audio('jump', ['audio/jump.wav']);
 			game.load.audio('coin', ['audio/coin.wav']);
 			game.load.audio('stomp', ['audio/stomp.wav']);
+			game.load.audio('death', ['audio/MarioDeath.mp3','audio/MarioDeath.ogg']);
+
 			this.load.spritesheet('tiles', 'assets/super_mario_tiles.png', 16,16);
 			this.load.spritesheet('goomba', 'assets/goomba.png', 16, 16);
 			this.load.spritesheet('mario', 'assets/mario.png', 16, 16);
@@ -42,6 +44,7 @@ body {
 		var jumpSound;
 		var coinSound;
 		var stompSound;
+		var deathSound;
 		
 		//Score
 		var scoretext;
@@ -191,6 +194,11 @@ body {
 				//Lives
 				livesc -= 1;
 				localStorage.setItem("lives", livesc);
+
+				//Death
+				music.stop();
+				deathSound = game.add.audio('death');
+				deathSound.play();
 				
 				player.frame = 6;
 				player.body.enable = false;
